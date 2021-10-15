@@ -15,8 +15,14 @@ class Lista extends Migration
     {
        Schema::create('lista', function (Blueprint $table)
        {
+<<<<<<< Updated upstream
         $table->id();
         $table->string('nome');
+=======
+        $table->charset = 'utf8mb4';
+        $table->collation = 'utf8mb4_unicode_ci';
+        $table->id();
+>>>>>>> Stashed changes
         $table->string('descricao');
       });
     }

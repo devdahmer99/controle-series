@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
+<<<<<<< Updated upstream
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,3 +20,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/series', 'SerieController@index');
 Route::get('/series/create', 'SerieController@create');
 Route::get('/series/create', 'SerieController@store');
+=======
+
+Route::get('/', 'SerieController@index');
+Route::get('/series/cadastrar', 'SerieController@create');
+Route::post('/series/create', 'SerieController@store');
+>>>>>>> Stashed changes

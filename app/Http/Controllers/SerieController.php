@@ -14,7 +14,12 @@ class SerieController extends Controller
      */
     public function index()
     {
+<<<<<<< Updated upstream
         return view('series.index');
+=======
+       $series =Serie::query()->orderBy('descricao')->get(); 
+       return view('series.index', compact('series'));
+>>>>>>> Stashed changes
     }
 
     /**
@@ -24,7 +29,12 @@ class SerieController extends Controller
      */
     public function create()
     {
+<<<<<<< Updated upstream
         //
+=======
+       return view('series.cadastrar');
+
+>>>>>>> Stashed changes
     }
 
     /**
@@ -35,7 +45,13 @@ class SerieController extends Controller
      */
     public function store(Request $request)
     {
+<<<<<<< Updated upstream
         //
+=======
+        $serie = Serie::create($request->all());
+
+        return redirect('/');
+>>>>>>> Stashed changes
     }
 
     /**
