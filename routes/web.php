@@ -18,3 +18,4 @@ Route::get('/series/criar', 'SeriesController@create')
     ->name('criar-serie');
 Route::post('/series/criar', 'SeriesController@store');
 Route::post('/series/remover/{id}', 'SeriesController@destroy');
+Route::get('/series/{serieId}/temporadas', 'TemporadasController@index');

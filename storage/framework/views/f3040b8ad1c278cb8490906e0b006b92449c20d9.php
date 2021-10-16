@@ -17,14 +17,19 @@ Séries
     <li class="list-group-item d-flex justify-content-between align-items-center">
         <?php echo e($serie->nome); ?>
 
+
+        <span class="d-flex">
+            <a href="/series/<?php echo e($serie->id); ?>/temporadas" class="btn btn-info btn-sm mr-1">
+                <i class="fas fa-external-link-alt"></i>
+            </a>
         <form method="post" action="/series/remover/<?php echo e($serie->id); ?>" onsubmit="return confirm('Tem certeza que deseja excluir <?php echo e(addslashes($serie->nome)); ?> ? ')">
             <?php echo csrf_field(); ?>
             <button class="btn btn-danger btn-sm">
                 <i class="fas fa-trash"></i>
             </button>
         </form>
-    </li>
-
+     </span>
+</li>
     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 </ul>
 <?php $__env->stopSection(); ?>
