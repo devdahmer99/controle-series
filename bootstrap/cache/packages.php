@@ -1,13 +1,9 @@
 <?php return array (
-  'facade/ignition' => 
+  'beyondcode/laravel-dump-server' => 
   array (
     'providers' => 
     array (
-      0 => 'Facade\\Ignition\\IgnitionServiceProvider',
-    ),
-    'aliases' => 
-    array (
-      'Flare' => 'Facade\\Ignition\\Facades\\Flare',
+      0 => 'BeyondCode\\DumpServer\\DumpServerServiceProvider',
     ),
   ),
   'fideloper/proxy' => 
@@ -15,13 +11,6 @@
     'providers' => 
     array (
       0 => 'Fideloper\\Proxy\\TrustedProxyServiceProvider',
-    ),
-  ),
-  'fruitcake/laravel-cors' => 
-  array (
-    'providers' => 
-    array (
-      0 => 'Fruitcake\\Cors\\CorsServiceProvider',
     ),
   ),
   'laravel/tinker' => 

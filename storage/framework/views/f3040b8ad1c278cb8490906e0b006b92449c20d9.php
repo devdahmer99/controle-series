@@ -1,16 +1,32 @@
-<?php $__env->startSection('titulo'); ?>
-    Home | Controle de Séries
+<?php $__env->startSection('cabecalho'); ?>
+Séries
 <?php $__env->stopSection(); ?>
 
-<?php $__env->startSection('content'); ?>
+<?php $__env->startSection('conteudo'); ?>
+<a href="<?php echo e(route('criar-serie')); ?>" class="btn btn-dark mb-2">Adicionar</a>
 
-<div class="list-group">
+<?php if(!empty($mensagem)): ?>
+    <div class="alert alert-success">
+        <?php echo e($mensagem); ?>
+
+    </div>
+<?php endif; ?>
+
+<ul class="list-group">
     <?php $__currentLoopData = $series; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $serie): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-    <li class="list-group-item"><?= $serie->descricao; ?></li>
-    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-</div>
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+        <?php echo e($serie->nome); ?>
 
-<a href="/series/cadastrar" class="btn btn-primary mt-3">Nova Serie</a>
+        <form method="post" action="/series/remover/<?php echo e($serie->id); ?>" onsubmit="return confirm('Tem certeza que deseja excluir <?php echo e(addslashes($serie->nome)); ?> ? ')">
+            <?php echo csrf_field(); ?>
+            <button class="btn btn-danger btn-sm">
+                <i class="fas fa-trash"></i>
+            </button>
+        </form>
+    </li>
+
+    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+</ul>
 <?php $__env->stopSection(); ?>
 
-<?php echo $__env->make('layout.template', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /home/dahmer/Documentos/controle-series/resources/views/series/index.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('layout', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /home/dahmer/Documentos/controle-series/resources/views/series/index.blade.php ENDPATH**/ ?>
