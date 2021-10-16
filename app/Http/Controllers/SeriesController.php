@@ -4,16 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\SeriesFormRequest;
 use App\Serie;
+use App\Services\CriadorDeSerie;
 use Illuminate\Http\Request;
 
 class SeriesController extends Controller
 {
-    public function index(Request $request)
-    {
+    public function index(Request $request) {
         $series = Serie::query()
-        ->orderBy('nome')
-        ->get();
-
+            ->orderBy('nome')
+            ->get();
         $mensagem = $request->session()->get('mensagem');
 
         return view('series.index', compact('series', 'mensagem'));
@@ -22,43 +21,30 @@ class SeriesController extends Controller
     public function create()
     {
         return view('series.create');
-
-
     }
 
-    public function store(SeriesFormRequest $request)
+    public function store(SeriesFormRequest $request, CriadorDeSerie $criadorDeSerie)
     {
-        $serie = Serie::create(['nome' => $request->nome]);
-
-        $qtdTemporadas = $request->qtdTemporadas;
-
-        for($i = 1; $i <= $qtdTemporadas; $i++) {
-            $temporada = $serie->temporadas()->create(['numero' => $i]);
-
-            for($j = 1; $j <= $request->ep_por_temporadas; $j++ ) {
-
-                $temporada->episodios()->create(['numero' => $j]);
-
-            }
-        }
+        $serie = $criadorDeSerie->criarSerie($request->nome, $request->qtdTemporada, $request->epPorTemporada);
 
         $request->session()
-        ->flash(
-            'mensagem',
-             "Serie {$serie->id} e suas temporadas foram criadas com sucesso {$serie->nome}"
+            ->flash(
+                'mensagem',
+                "Série {$serie->id} e suas temporadas e episódios criados com sucesso {$serie->nome}"
             );
 
-        return redirect()->route('listar-series');
+        return redirect()->route('listar');
     }
+
 
     public function destroy(Request $request)
     {
         Serie::destroy($request->id);
         $request->session()
-        ->flash(
-            'mensagem',
-             "Serie removida com Sucesso",
-        );
-        return redirect()->route('listar-series');
+            ->flash(
+                'mensagem',
+                "Série removida com sucesso"
+            );
+        return redirect()->route('listar');
     }
 }
