@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTemporadasTable extends Migration
+class Episodios extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,14 @@ class CreateTemporadasTable extends Migration
      */
     public function up()
     {
-        Schema::create('temporadas', function (Blueprint $table) {
-
+        Schema::create('episodios', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('numero');
-            $table->integer('serie_id')->unsigned();
+            $table->integer('temporada_id');
 
-            $table->foreign('serie_id')
+            $table->foreign('temporada_id')
                 ->references('id')
-                ->on('series')->onDelete('cascade');
+                ->on('temporadas');
         });
     }
 
@@ -32,6 +31,6 @@ class CreateTemporadasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('temporadas');
+        Schema::dropIfExists('episodios');
     }
 }
