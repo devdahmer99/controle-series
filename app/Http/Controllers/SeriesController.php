@@ -8,6 +8,7 @@ use App\Serie;
 use App\Services\CriadorDeSerie;
 use App\Services\RemovedorDeSerie;
 use App\Temporada;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 class SeriesController extends Controller
@@ -45,7 +46,7 @@ class SeriesController extends Controller
         return redirect()->route('listar_series');
     }
 
-    public function destroy(Request $request, RemovedorDeSerie $removedorDeSerie)
+    public function destroy(Request $request, RemovedorDeSerie $removedorDeSerie): RedirectResponse
     {
         $nomeSerie = $removedorDeSerie->removerSerie($request->id);
         $request->session()

@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Episodio;
 use App\Serie;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 
 class TemporadasController extends Controller

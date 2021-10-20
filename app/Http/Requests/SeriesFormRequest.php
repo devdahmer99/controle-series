@@ -4,6 +4,11 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
+/**
+ * @property mixed $qtd_temporadas
+ * @property mixed $ep_por_temporada
+ * @property mixed $nome
+ */
 class SeriesFormRequest extends FormRequest
 {
     /**

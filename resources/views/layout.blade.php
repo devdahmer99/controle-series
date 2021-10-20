@@ -10,6 +10,16 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 </head>
 <body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light mb-2 d-flex justify-content-between">
+        <a class="navbar-brand" href="{{ route('listar_series') }}">Home</a>
+    @auth()
+        <a href="/sair" class="text-danger">Sair</a>
+    @endauth
+    @guest
+        <a href="/entrar" class="text-primary">Entrar</a>
+    @endguest
+</nav>
+
     <div class="container">
         <div class="jumbotron">
             <h1>@yield('cabecalho')</h1>
