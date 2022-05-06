@@ -47,5 +47,7 @@ Route::get('/sair', function () {
 });
 
 Route::get('/email', function () {
-    return new App\Mail\NovaSerie();
+    return new App\Mail\NovaSerie(
+        'Suits', '10', '17'
+    );
 });

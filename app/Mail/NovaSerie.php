@@ -11,14 +11,20 @@ class NovaSerie extends Mailable
 {
     use Queueable, SerializesModels;
 
+    public $temporadas;
+    public $qtdEpisodios;
+    public $episodios;
+
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($temporadas, $qtdEpisodios, $episodios)
     {
-        //
+        $this->temporadas = $temporadas;
+        $this->qtdEpisodios = $qtdEpisodios;
+        $this->episodios = $episodios;
     }
 
     /**
@@ -28,6 +34,6 @@ class NovaSerie extends Mailable
      */
     public function build()
     {
-        return $this->view('mail.serie.nova-serie');
+        return $this->markdown('mail.serie.nova-serie');
     }
 }
