@@ -11,15 +11,18 @@ class Autenticador
     /**
      * Handle an incoming request.
      *
-     * @param Request $request
-     * @param  Closure  $next
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \Closure  $next
      * @return mixed
      */
     public function handle(Request $request, Closure $next)
     {
-        if(!Auth::check()) {
+        if (   !$request->is('entrar', 'registrar')
+            && !Auth::check()
+        ) {
             return redirect('/entrar');
         }
-         return $next($request);
+
+        return $next($request);
     }
 }

@@ -5,7 +5,8 @@
 @endsection
 
 @section('conteudo')
-@include('erros')
+    @include('erros', ['errors' => $errors])
+
     <form method="post">
         @csrf
         <div class="form-group">

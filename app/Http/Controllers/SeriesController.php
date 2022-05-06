@@ -8,12 +8,13 @@ use App\Serie;
 use App\Services\CriadorDeSerie;
 use App\Services\RemovedorDeSerie;
 use App\Temporada;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class SeriesController extends Controller
 {
-    public function index(Request $request) {
+    public function index(Request $request)
+    {
         $series = Serie::query()
             ->orderBy('nome')
             ->get();
@@ -46,7 +47,7 @@ class SeriesController extends Controller
         return redirect()->route('listar_series');
     }
 
-    public function destroy(Request $request, RemovedorDeSerie $removedorDeSerie): RedirectResponse
+    public function destroy(Request $request, RemovedorDeSerie $removedorDeSerie)
     {
         $nomeSerie = $removedorDeSerie->removerSerie($request->id);
         $request->session()
