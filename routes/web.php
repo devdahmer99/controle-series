@@ -1,5 +1,9 @@
 <?php
 
+
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -40,4 +44,8 @@ Route::post('/registrar', 'RegistroController@store');
 Route::get('/sair', function () {
     \Illuminate\Support\Facades\Auth::logout();
     return redirect('/entrar');
+});
+
+Route::get('/email', function () {
+    return new App\Mail\NovaSerie();
 });
