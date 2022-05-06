@@ -2,14 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Episodio;
-use App\Http\Requests\SeriesFormRequest;
+use App\User;
 use App\Serie;
+use App\Episodio;
+use App\Temporada;
+use App\Mail\NovaSerie;
+use Illuminate\Http\Request;
 use App\Services\CriadorDeSerie;
 use App\Services\RemovedorDeSerie;
-use App\Temporada;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
+use App\Http\Requests\SeriesFormRequest;
 
 class SeriesController extends Controller
 {
@@ -37,6 +40,20 @@ class SeriesController extends Controller
             $request->qtd_temporadas,
             $request->ep_por_temporada
         );
+
+
+
+        $users = User::all();
+        foreach($users as $user) {
+
+            $email =  new NovaSerie(
+                $request->nome,
+                $request->qtd_temporadas,
+                $request->ep_por_temporada
+           );
+            $email->subject = 'Nova série adicionada ao catalogo';
+            Mail::to($user)->send($email);
+        }
 
         $request->session()
             ->flash(

@@ -3,7 +3,8 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-
+use Illuminate\Support\Facades\Mail;
+//use App\User;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -50,4 +51,23 @@ Route::get('/email', function () {
     return new App\Mail\NovaSerie(
         'Suits', '10', '17'
     );
+});
+
+
+Route::get('/enviar', function () {
+    /*$email =  new App\Mail\NovaSerie(
+        'Suits', '10', '17'
+    );
+
+    $email->subject = 'Nova Série Adicionada';
+
+    $user = (object)[
+        'email' => 'eduardodahmer99@gmail.com',
+        'name' => 'Eduardo Dahmer Correa'
+    ];
+
+    Mail::to($user)->send($email);
+
+
+    return 'E-mail Enviado!';*/
 });

@@ -1,10 +1,9 @@
 @component('mail::message')
 # Nova Série
 
-    ### Temporadas: {{$temporadas}}
-    ### Quantidade de Episódios: {{$qtdEpisodios}}
+    ### Nome da Série: {{$nome}}
+    ### Quantidade de Temporadas: {{$qtdTemporadas}}
     ### Episódios: {{$episodios}}
-
 
 
 @endcomponent

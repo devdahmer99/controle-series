@@ -7,24 +7,23 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class NovaSerie extends Mailable
+class NovoUsuario extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $nome;
-    public $qtdTemporadas;
-    public $episodios;
-
+    public $name;
+    public $email;
+    public $password;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct( $nome, $qtdTemporadas, $episodios)
+    public function __construct($name, $email, $password)
     {
-        $this->nome = $nome;
-        $this->qtdTemporadas = $qtdTemporadas;
-        $this->episodios = $episodios;
+        $this->name = $name;
+        $this->email = $email;
+        $this->password = $password;
     }
 
     /**
@@ -34,6 +33,6 @@ class NovaSerie extends Mailable
      */
     public function build()
     {
-        return $this->markdown('mail.serie.nova-serie');
+        return $this->markdown('mail.usuario.novo-usuario');
     }
 }
